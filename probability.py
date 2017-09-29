@@ -1,25 +1,23 @@
 import itertools
 import math
+from numpy.random import randint, seed
 
-EVENTS = [['a', 1.0],
-          ['b', .20],
-          ['c', .30],
-          ['d', .40],
-          ['e', .50],
-          ['f', .60],
-          ['g', 1.0],
-          ['h', .80],
-          ['i', .90]]
+EVENTS = []
 
-# EVENTS = [['a', 1],
-#           ['b', 0],
-#           ['c', 1]]
+seed(42)
+for ii in range(0,30):
+    inst = []
+    inst.append(str(ii))
+    inst.append(float(randint(0, 100)/100))
+    EVENTS.append(inst)
+
+
+
 
 
 def probability_independent_events(events, target_pct):
     base_target = int(math.ceil(len(events) * target_pct))
     end_target = len(events)
-
     event_dict = {}
     for event in events:
         event_dict[event[0]] = [event[1]]
@@ -35,8 +33,6 @@ def probability_independent_events(events, target_pct):
             neg = 1
             for key in event_dict:
                 if key in option:
-                    if event_dict[key][0] == 0:
-                        neg *= 1
                     pos *= event_dict[key][0]
                 else:
                     neg *= 1 - event_dict[key][0]
@@ -47,4 +43,5 @@ def probability_independent_events(events, target_pct):
     return this_run_sum
 
 if __name__ == '__main__':
-    print(probability_independent_events(EVENTS, .66))
+    print(probability_independent_events(EVENTS, .75))
+    # print(EVENTS)
