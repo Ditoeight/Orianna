@@ -12,9 +12,6 @@ for ii in range(0,30):
     EVENTS.append(inst)
 
 
-
-
-
 def probability_independent_events(events, target_pct):
     base_target = int(math.ceil(len(events) * target_pct))
     end_target = len(events)
@@ -25,10 +22,8 @@ def probability_independent_events(events, target_pct):
     this_run_sum = 0.0
 
     for event_lengths in range(base_target, end_target + 1):
-        positives_options = list(
-            itertools.combinations(event_dict.keys(), event_lengths))
         this_length_sum = 0.0
-        for option in positives_options:
+        for option in itertools.combinations(event_dict.keys(), event_lengths):
             pos = 1
             neg = 1
             for key in event_dict:
@@ -43,5 +38,5 @@ def probability_independent_events(events, target_pct):
     return this_run_sum
 
 if __name__ == '__main__':
-    print(probability_independent_events(EVENTS, .75))
+    print(probability_independent_events(EVENTS, .1))
     # print(EVENTS)
