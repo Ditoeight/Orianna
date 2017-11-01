@@ -8,8 +8,20 @@ seed(42)
 for ii in range(0,30):
     inst = []
     inst.append(str(ii))
-    inst.append(float(randint(0, 100)/100))
+    inst.append(float(randint(50, 100)/100))
     EVENTS.append(inst)
+
+# EVENTS = [['a', .6],
+#           ['b', .7],
+#           ['c', .8],
+#           ['d', .9],
+#           ['e', .9],
+#           ['f', .6],
+#           ['g', .7],
+#           ['h', .8],
+#           ['i', .9],
+#           ['j', .9],
+#           ['k', .5]]
 
 
 def probability_independent_events(events, target_pct):
@@ -38,5 +50,5 @@ def probability_independent_events(events, target_pct):
     return this_run_sum
 
 if __name__ == '__main__':
-    print(probability_independent_events(EVENTS, .1))
+    print(probability_independent_events(EVENTS, .75))
     # print(EVENTS)

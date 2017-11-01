@@ -8,7 +8,7 @@ from numba import jit
 
 EVENTS = []
 np.random.seed(42)
-for ii in range(0, 30):
+for ii in range(0, 10):
     inst = []
     inst.append(str(ii))
     inst.append(float(np.random.randint(50, 100)/100))
@@ -56,10 +56,10 @@ def main(events, target_pct):
     # print(main_array)
 
     # Generate unique patterns
-    patterns = []
     options = main_array.index.tolist()
     for nots in range(base_nots, end_nots + 1): # Loop through not lengths
         length_sum = 0
+        patterns = []
         for combination in itertools.combinations(options, nots): # Generate a combo
             combo_sum = 0
             if combination[0] != 0: # Doesn't begin with first index, break
@@ -82,7 +82,6 @@ def main(events, target_pct):
                         combination[position_index+1] - combination[position_index])
 
             if pattern_check(current_pattern, patterns):
-                print(combination)
                 patterns.append(current_pattern)
                 combo_sum += array_math(main_array, combination)
             length_sum += combo_sum
